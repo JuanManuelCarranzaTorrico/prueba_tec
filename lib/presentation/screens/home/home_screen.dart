@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:prueba_tec/config/menu/post_items.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -6,6 +7,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home'),
@@ -13,9 +15,11 @@ class HomeScreen extends StatelessWidget {
       body: _HomeView(),
       floatingActionButton: ClipOval(
         child: FloatingActionButton(
-          onPressed: () {}, 
+          onPressed: () {
+            context.push('/new-post');
+          }, 
           child: const Icon(Icons.add , color: Colors.white,), 
-          backgroundColor: Colors.blueAccent,
+          backgroundColor: colors.primary,
           
           ),
       ),
@@ -32,25 +36,30 @@ class _HomeView extends StatelessWidget {
       itemCount: postItems.length,
       itemBuilder: (context, index) {
         final menuItem = postItems[index];
-        return Card(
-          child: Row(
-            children: [
-              const SizedBox(width: 10),
-              Column(
-                children: [
-                  const SizedBox(height: 10),
-                  CircleAvatar(child: Text('${menuItem.id}')),
-                  const SizedBox(height: 20,)
-                ],
-              ),
-              const SizedBox(width: 15),
-              Column(
-                children: [
-                  Text(menuItem.title, style: Theme.of(context).textTheme.titleLarge),
-                  Text(menuItem.body, style: Theme.of(context).textTheme.bodySmall),
-                ],
-              ),
-            ],
+        return GestureDetector(
+          onTap: () {
+            
+          },
+          child: Card(    
+            child: Row(
+              children: [
+                const SizedBox(width: 10),
+                Column(
+                  children: [
+                    const SizedBox(height: 10),
+                    CircleAvatar(child: Text('${menuItem.id}')),
+                    const SizedBox(height: 20,)
+                  ],
+                ),
+                const SizedBox(width: 15),
+                Column(
+                  children: [
+                    Text(menuItem.title, style: Theme.of(context).textTheme.titleLarge),
+                    Text(menuItem.body, style: Theme.of(context).textTheme.bodySmall),
+                  ],
+                ),
+              ],
+            ),
           ),
         );
       },
