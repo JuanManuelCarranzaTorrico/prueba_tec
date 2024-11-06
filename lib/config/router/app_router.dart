@@ -13,5 +13,9 @@ final appRouter = GoRouter(
       path: '/new-post',
       builder: (context, state) => NewPost(),
     ),
+    GoRoute(
+      path: '/comments',
+      builder: (context, state) => CommentsScreen(),
+    ),
   ],
 );

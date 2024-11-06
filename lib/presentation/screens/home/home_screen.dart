@@ -38,7 +38,7 @@ class _HomeView extends StatelessWidget {
         final menuItem = postItems[index];
         return GestureDetector(
           onTap: () {
-            
+            context.push('/comments');
           },
           child: Card(    
             child: Row(
