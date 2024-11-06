@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prueba_tec/domian/entities/comment.dart';
 import 'package:prueba_tec/presentation/widgets/comments/comment_widget.dart';
 
 class CommentsScreen extends StatelessWidget {
@@ -16,10 +17,12 @@ class CommentsScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: ListView(
-          children: [
-            CommentWidget(name: "Name", body: "Body")
-          ],
+        child: ListView.builder(
+          itemCount: comments.length,
+          itemBuilder: (context, index) {
+            final comment = comments[index];
+            return CommentWidget(name: comment.name, body: comment.body);
+          },
         ),
       )
     );

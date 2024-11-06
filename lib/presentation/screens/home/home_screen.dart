@@ -47,7 +47,7 @@ class _HomeView extends StatelessWidget {
                 Column(
                   children: [
                     const SizedBox(height: 10),
-                    CircleAvatar(child: Text('${menuItem.id}')),
+                    CircleAvatar(child: Text('${menuItem.userId}')),
                     const SizedBox(height: 20,)
                   ],
                 ),

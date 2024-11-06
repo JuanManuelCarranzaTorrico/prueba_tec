@@ -22,13 +22,13 @@ const postItems = <PostItem>[
   PostItem(
     title: 'Title 2',
     body: 'Body 2',
-    userId: 2,
+    userId: 1,
     id: 2,
   ),
   PostItem(
     title: 'Title 3',
     body: 'Body 3',
-    userId: 3,
+    userId: 2,
     id: 3,
   ),
 ];
