@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:prueba_tec/config/menu/post_items.dart';
+import 'package:prueba_tec/presentation/providers/post_provider.dart';
 
 class NewPost extends StatelessWidget {
   const NewPost({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final postProvider = context.watch<PostProvider>();
     final colors = Theme.of(context).colorScheme;
     return  Scaffold(
       appBar: AppBar(
@@ -14,7 +18,7 @@ class NewPost extends StatelessWidget {
         foregroundColor: Colors.white,
         centerTitle: true,
       ),
-      body: _postForm(),
+      body: postProvider.isCreatingPost ? const Center(child: CircularProgressIndicator()) : _postForm(),
     );
   }
 }
@@ -29,6 +33,7 @@ class _postForm extends StatefulWidget {
 class _postFormState extends State<_postForm> {
   @override
   Widget build(BuildContext context) {
+    final postProvider = context.watch<PostProvider>();
     final tittleController = TextEditingController();
     final bodyController = TextEditingController();
     final userIdController = TextEditingController();
@@ -75,9 +80,7 @@ class _postFormState extends State<_postForm> {
             child: ElevatedButton(
               onPressed: () {
                 if(title.isNotEmpty && body.isNotEmpty && userId.isNotEmpty ){
-                  title = '';
-                  body = '';
-                  userId = '';
+                  postProvider.createPost(PostItem(title: title, body: body, userId: int.parse(userId), id: postProvider.posts.length + 1));
                   tittleController.clear();
                   bodyController.clear();
                   userIdController.clear();

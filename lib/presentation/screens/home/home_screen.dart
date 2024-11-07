@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:prueba_tec/config/menu/post_items.dart';
+// import 'package:prueba_tec/config/menu/post_items.dart';
 import 'package:prueba_tec/presentation/providers/post_provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -9,12 +9,16 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final postProvider = context.watch<PostProvider>();
+    if(postProvider.isLoadingPosts){
+      postProvider.getPosts();
+    }
     final colors = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home'),
       ),
-      body: _HomeView(),
+      body: postProvider.isLoadingPosts ? const Center(child: CircularProgressIndicator()) : _HomeView(),
       floatingActionButton: ClipOval(
         child: FloatingActionButton(
           onPressed: () {
