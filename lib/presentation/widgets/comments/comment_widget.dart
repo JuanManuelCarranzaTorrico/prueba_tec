@@ -11,15 +11,20 @@ class CommentWidget extends StatelessWidget {
       child: Row(
         children: [
           const SizedBox(width: 10),
-          Column(
-            children: [
-              const SizedBox(height: 10),
-              Text(name),
-              const SizedBox(height: 10),
-              Text(body),
-              const SizedBox(height: 10),
-            ],
+          Expanded(
+            child: Column(
+              children: [
+                const SizedBox(height: 10),
+                Text(name),
+                const SizedBox(height: 5),
+                Divider(color: Theme.of(context).colorScheme.primary,),
+                const SizedBox(height: 5),
+                Text(body),
+                const SizedBox(height: 10),
+              ],
+            ),
           ),
+          const SizedBox(width: 10),
         ],
       ),
     );

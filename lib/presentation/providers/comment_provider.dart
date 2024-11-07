@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prueba_tec/datasource/comment_datasource.dart';
 import 'package:prueba_tec/domian/entities/comment.dart';
 
 class CommentProvider extends ChangeNotifier{
@@ -7,17 +8,8 @@ class CommentProvider extends ChangeNotifier{
   int postId = 0;
   
   Future<void> getComments() async{
-    //todo: conectar con la api
-    await Future.delayed(const Duration(seconds: 3));
-    comments = [
-      Comment(
-        postId: postId,
-        id: 1,
-        name: 'Comment ${postId}',
-        email: 'comment1@example.com',
-        body: 'Body 1',
-      ),
-    ];
+    List<Comment> comments1 = await getCommentsDataSource(postId);
+    comments = comments1;
     isLoadingComments = false;
     notifyListeners();
   }

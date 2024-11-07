@@ -14,6 +14,13 @@ class Comment {
     required this.email, 
     required this.body
     });
+    factory Comment.fromJson(Map<String, dynamic> json) => Comment(
+      postId: json['postId'],
+      id: json['id'],
+      name: json['name'],
+      email: json['email'],
+      body: json['body'],
+    );
 }
 const comments = <Comment>[
   Comment(postId: 1, id: 1, name: "Name 1", email: "Email 1", body: "Body 1"),
