@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:prueba_tec/config/dio_config.dart';
-import 'package:prueba_tec/config/menu/post_items.dart';
+import 'package:prueba_tec/domian/entities/post_item.dart';
 import 'package:prueba_tec/datasource/post_datasource.dart';
 
 class PostProvider extends ChangeNotifier{
