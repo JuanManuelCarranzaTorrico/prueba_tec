@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:prueba_tec/presentation/providers/comment_provider.dart';
 // import 'package:prueba_tec/config/menu/post_items.dart';
 import 'package:prueba_tec/presentation/providers/post_provider.dart';
 
@@ -39,12 +40,16 @@ class _HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final postProvider = context.watch<PostProvider>();
+    final commentProvider = context.watch<CommentProvider>();
     return ListView.builder(
       itemCount: postProvider.posts.length,
       itemBuilder: (context, index) {
         final menuItem = postProvider.posts[index];
         return GestureDetector(
           onTap: () {
+            commentProvider.clearComments();
+            commentProvider.setIsLoadingComments(true);
+            commentProvider.setPostId(menuItem.id);
             context.push('/comments');
           },
           child: Card(    
