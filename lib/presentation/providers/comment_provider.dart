@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:prueba_tec/config/menu/post_items.dart';
 import 'package:prueba_tec/domian/entities/comment.dart';
 
 class CommentProvider extends ChangeNotifier{

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:prueba_tec/domian/entities/comment.dart';
 import 'package:prueba_tec/presentation/providers/comment_provider.dart';
 import 'package:prueba_tec/presentation/widgets/comments/comment_widget.dart';
 

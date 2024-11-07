@@ -64,12 +64,16 @@ class _HomeView extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(width: 15),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(menuItem.title, style: Theme.of(context).textTheme.titleLarge),
-                    Text(menuItem.body, style: Theme.of(context).textTheme.bodySmall),
-                  ],
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 10),
+                      Text(menuItem.title, style: Theme.of(context).textTheme.titleLarge, ),
+                      Text(menuItem.body, style: Theme.of(context).textTheme.bodySmall, ),
+                      const SizedBox(height: 10),
+                    ],
+                  ),
                 ),
               ],
             ),

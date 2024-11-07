@@ -1,5 +1,8 @@
+
 import 'package:flutter/material.dart';
+import 'package:prueba_tec/config/dio_config.dart';
 import 'package:prueba_tec/config/menu/post_items.dart';
+import 'package:prueba_tec/datasource/post_datasource.dart';
 
 class PostProvider extends ChangeNotifier{
   // List <PostItem> posts = [];
@@ -10,8 +13,8 @@ class PostProvider extends ChangeNotifier{
   bool isCreatingPost = false;
 
   Future<void> getPosts() async{
-    //todo: conectar con la api
-    await Future.delayed(const Duration(seconds: 3));
+    // await Future.delayed(const Duration(seconds: 3));
+    List<PostItem> postItems = await getPostsDataSource();
     posts = postItems;
     isLoadingPosts = false;
     notifyListeners();
@@ -21,6 +24,15 @@ class PostProvider extends ChangeNotifier{
     setIsCreatingPost(true);
     await Future.delayed(const Duration(seconds: 2));
     //todo: conectar con la api
+    Map<String, dynamic> data = {
+      'title': post.title,
+      'body': post.body,
+      'userId': post.userId,
+    };
+    
+    final response = await dio.post('/posts', data: data);
+    print(response.data);
+
     posts = [...posts, post];
     setIsCreatingPost(false);
     notifyListeners();
