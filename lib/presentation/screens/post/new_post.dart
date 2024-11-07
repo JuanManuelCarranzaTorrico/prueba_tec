@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:prueba_tec/config/menu/post_items.dart';
 import 'package:prueba_tec/presentation/providers/post_provider.dart';
+import 'package:flutter/services.dart';
 
 class NewPost extends StatelessWidget {
   const NewPost({super.key});
@@ -51,6 +52,9 @@ class _postFormState extends State<_postForm> {
             decoration: const InputDecoration(
               hintText: 'Title',
             ),
+            inputFormatters: [
+              FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
+            ],
             onChanged: (value) {
                 title = value;
               },
