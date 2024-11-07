@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:prueba_tec/config/menu/post_items.dart';
+import 'package:prueba_tec/presentation/providers/post_provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -32,10 +34,11 @@ class _HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final postProvider = context.watch<PostProvider>();
     return ListView.builder(
-      itemCount: postItems.length,
+      itemCount: postProvider.posts.length,
       itemBuilder: (context, index) {
-        final menuItem = postItems[index];
+        final menuItem = postProvider.posts[index];
         return GestureDetector(
           onTap: () {
             context.push('/comments');
@@ -53,6 +56,7 @@ class _HomeView extends StatelessWidget {
                 ),
                 const SizedBox(width: 15),
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(menuItem.title, style: Theme.of(context).textTheme.titleLarge),
                     Text(menuItem.body, style: Theme.of(context).textTheme.bodySmall),
