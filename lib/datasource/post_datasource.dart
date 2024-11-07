@@ -1,5 +1,5 @@
 import 'package:prueba_tec/config/dio_config.dart';
-import 'package:prueba_tec/config/menu/post_items.dart';
+import 'package:prueba_tec/domian/entities/post_item.dart';
 
 
 Future<List<PostItem>> getPostsDataSource() async{
