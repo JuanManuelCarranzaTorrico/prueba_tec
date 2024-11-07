@@ -37,6 +37,7 @@ class _postFormState extends State<_postForm> {
     final tittleController = TextEditingController();
     final bodyController = TextEditingController();
     final userIdController = TextEditingController();
+    final colors = Theme.of(context).colorScheme;
     String title = '';
     String body = '';
     String userId = '';
@@ -89,7 +90,7 @@ class _postFormState extends State<_postForm> {
                 }
               }, 
               style: ElevatedButton.styleFrom(
-                primary: const Color.fromARGB(255, 1, 95, 172),
+                primary: colors.primary,
                 onPrimary: Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.zero,

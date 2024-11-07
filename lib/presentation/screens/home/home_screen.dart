@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:prueba_tec/presentation/providers/color_provider.dart';
 import 'package:prueba_tec/presentation/providers/comment_provider.dart';
 // import 'package:prueba_tec/config/menu/post_items.dart';
 import 'package:prueba_tec/presentation/providers/post_provider.dart';
@@ -11,6 +12,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final postProvider = context.watch<PostProvider>();
+    final colorProvider = context.watch<ColorProvider>();
     if(postProvider.isLoadingPosts){
       postProvider.getPosts();
     }
@@ -18,6 +20,14 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              colorProvider.changeColor();
+            }, 
+            icon: const Icon(Icons.color_lens),
+          ),
+        ],
       ),
       body: postProvider.isLoadingPosts ? const Center(child: CircularProgressIndicator()) : _HomeView(),
       floatingActionButton: ClipOval(
